@@ -18,11 +18,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {\
         "name": "@client/web",\
         "reference": "workspace:apps/client"\
+      },\
+      {\
+        "name": "@client/lib",\
+        "reference": "workspace:packages/lib"\
       }\
     ],\
     "enableTopLevelFallback": true,\
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
+      ["@client/lib", ["workspace:packages/lib"]],\
       ["@client/web", ["workspace:apps/client"]],\
       ["yarn-berry-workspace", ["workspace:."]]\
     ],\
@@ -48,11 +53,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@client/lib", [\
+        ["workspace:packages/lib", {\
+          "packageLocation": "./packages/lib/",\
+          "packageDependencies": [\
+            ["@client/lib", "workspace:packages/lib"],\
+            ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"]\
+          ],\
+          "linkType": "SOFT"\
+        }]\
+      ]],\
       ["@client/web", [\
         ["workspace:apps/client", {\
           "packageLocation": "./apps/client/",\
           "packageDependencies": [\
             ["@client/web", "workspace:apps/client"],\
+            ["@client/lib", "workspace:packages/lib"],\
             ["@types/node", "npm:20.1.1"],\
             ["@types/react", "npm:18.2.6"],\
             ["@types/react-dom", "npm:18.2.4"],\
