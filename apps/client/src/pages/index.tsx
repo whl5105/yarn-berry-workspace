@@ -1,4 +1,5 @@
 import { sayHello } from '@client/lib'
+import { Button } from '@client/ui'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -25,6 +26,7 @@ export default function Home() {
             의존선 테스트 &nbsp;
             <code className={styles.code}>{sayHello()}</code>
           </p>
+          <Button>from @client/ui button</Button>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
